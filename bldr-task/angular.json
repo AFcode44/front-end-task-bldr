@@ -135,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "bldr-task"
+  "defaultProject": "bldr-task",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
