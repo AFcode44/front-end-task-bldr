@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthGuard } from './auth-guard.service';
-import { UserService } from '../auth/user.service';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/reducers';

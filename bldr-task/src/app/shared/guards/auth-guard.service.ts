@@ -3,8 +3,8 @@ import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import { AppState } from 'src/app/reducers';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { isLoggedIn } from '../auth/auth.selectors';
 import { tap } from 'rxjs/operators';
+import { isLoggedIn } from 'src/app/auth/selectors/auth.selectors';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

@@ -1,0 +1,16 @@
+<div class="card-container" (click)="onCardClick()">
+  <article class="card">
+    <div class="card-info-hover"></div>
+    <div class="card-img" [ngStyle]="{'background-image': myImage}"></div>
+    <div class="card-img--hover"></div>
+    <div class="card-info">
+      <span class="card-category">Film number: {{myNumber}}</span>
+      <h3 class="card-title">{{movieInfo.title}}</h3>
+      <span class="card-year">Year: {{movieInfo.year}}
+        <span class="card-metascore" title="score">Metascore:
+          <span class="card-score">{{movieInfo.metascore}}</span>
+        </span>
+      </span>
+    </div>
+  </article>
+</div>

@@ -1,1 +1,19 @@
-<button class="log-out" (click)="onLogOut()">LogOut</button>
+<!-- <button class="log-out" (click)="onLogOut()">LogOut</button>
+
+<button class="log-out" (click)="onGetMovies()">GetMovies</button> -->
+<div class="home-container">
+  <header class="header">
+    <button class="log-out" (click)="onLogOut()">LogOut</button>
+    <app-filter-box></app-filter-box>
+
+  </header>
+  <div class="movies-wrapper">
+    <div class="movies" *ngFor="let movie of movies$ | async; let i = index">
+      <app-card [imageUrl]="getImageUrl()" [movieDesc]="movie" [movieNumber]="i"></app-card>
+    </div>
+  </div>
+  <div class="filtering-panel">
+    <input type="checkbox">
+  </div>
+</div>
+<app-card-details></app-card-details>
