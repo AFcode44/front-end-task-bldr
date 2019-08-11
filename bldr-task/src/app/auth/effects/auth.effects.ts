@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Login, AuthActionTypes, Logout } from '../actions/auth.actions';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { of, defer, Observable, Subject } from 'rxjs';
+import { of, defer } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { HttpClient } from '@angular/common/http';
 
@@ -31,7 +31,6 @@ export class AuthEffects {
   @Effect()
   public init$ = defer(() => {
     const userData = sessionStorage.getItem('userData');
-    console.error('init: ', userData);
     if (userData) {
       return of(new Login(JSON.parse(userData)));
     } else {
@@ -40,9 +39,4 @@ export class AuthEffects {
   });
 
   constructor(private router: Router, private httpClient: HttpClient, private actions$: Actions) { }
-
-  private getHeaders(): string {
-    return '';
-  }
-
 }

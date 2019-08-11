@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './user.interface';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -15,17 +15,15 @@ export class UserService {
 
   public login(data: User): Observable<User> {
     const auth$ = new Subject<User>();
-    this.httpClient.post<any>(this.loginUri, { login: data.email, password: data.password},
-        { headers: { 'Content-Type': 'application/json' }, observe: 'response' })
+    this.httpClient.post<any>(this.loginUri, { login: data.email, password: data.password },
+      { headers: { 'Content-Type': 'application/json' }, observe: 'response' })
       .subscribe((response: any) => {
-      console.error('response', response);
-      const user: User = { email: data.email, password: data.password, token: response.body.token };
-      auth$.next(user);
-    },
-      (error) => {
-        console.error('error', error);
-        auth$.error(error);
-      });
+        const user: User = { email: data.email, password: data.password, token: response.body.token };
+        auth$.next(user);
+      },
+        (error) => {
+          auth$.error(error);
+        });
     return auth$.asObservable();
   }
 }

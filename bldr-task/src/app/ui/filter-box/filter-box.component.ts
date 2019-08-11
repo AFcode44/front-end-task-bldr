@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/reducers';
 import { getMovies, getMovieFilters } from 'src/app/movies/movies.selectors';
 import { MoviesInterface } from 'src/app/shared/services/movies/movies.interface';
 import { MoviesService } from 'src/app/shared/services/movies/movies.service';
 import { LoadMovies, MovieFilterApply } from 'src/app/movies/movies.actions';
-import { FilterInterface } from 'src/app/shared/services/movies/filter.interface';
+import { Subscription } from 'rxjs';
 
 
 export enum FilterBy {
@@ -23,62 +23,35 @@ export enum FilterOrder {
   templateUrl: './filter-box.component.html',
   styleUrls: ['./filter-box.component.scss']
 })
-export class SearchBoxComponent implements OnInit {
+export class SearchBoxComponent implements OnInit, OnDestroy {
 
-  // @Input() public set moviesList
   public moviesList: Array<MoviesInterface>;
   public searchValue = '';
   public filterOrder = FilterOrder.DESCENDING;
   public filterBy = FilterBy.TITLE;
 
-  private prevSearch = null;
+  private storeSub: Subscription;
   constructor(private readonly store: Store<AppState>, private readonly moviesService: MoviesService) { }
 
   ngOnInit() {
-    /*this.movies$  = */this.store.pipe(
-    select(getMovies)
-  ).subscribe((list: any) => {
-    console.error('MOVIES:', list);
-    this.moviesList = list;
-  });
+    this.storeSub = this.store.pipe(
+      select(getMovies)
+    ).subscribe((list: any) => {
+      this.moviesList = list;
+    });
 
-  this.store.pipe(
-    select(getMovieFilters)
-  ).subscribe(val => {
-    // console.error('DUPA:', val);
-    if (val && val.sortBy) {
-      this.filterBy = val.sortBy;
-      this.filterOrder = val.sortOrder;
-    }
+    this.store.pipe(
+      select(getMovieFilters)
+    ).subscribe(val => {
+      if (val && val.sortBy) {
+        this.filterBy = val.sortBy;
+        this.filterOrder = val.sortOrder;
+      }
 
-  });
-
-    // this.store.pipe(
-    //   select(getMovieFilters)
-    // ).subscribe((filters: FilterInterface) => {
-    //   console.error('odczytałem filtry:', filters);
-    //   this.filterBy = filters.sortBy;
-    //   this.filterOrder = filters.sortOrder;
-    //   // this.processRequest();
-    // });
+    });
   }
-
-  // public onKeyPress(event): void {
-  //   if (this.prevSearch === null || this.prevSearch !== this.searchValue) {
-  //     if (event.which === 13 && this.searchValue.length === 0) {
-  //       // this.postService.clearFiltered();
-  //       // this.postService.startSending();
-  //     } else if (event.which === 13 && this.searchValue.length > 0) {
-  //       // this.postService.stopSending();
-  //       // this.postService.filterPosts(this.searchValue);
-  //     }
-  //     this.prevSearch = this.searchValue;
-  //   }
-  // }
-
-  public onSearchApply(): void {
-    // this.postService.stopSending();
-    // this.postService.filterPosts(this.searchValue);
+  public ngOnDestroy(): void {
+    this.storeSub.unsubscribe();
   }
 
   public onTitle(): void {

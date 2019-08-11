@@ -19,9 +19,7 @@ export class CardComponent implements OnInit {
   public isDetailsSelected$: Observable<boolean>;
 
   @Input() public set movieDesc(movieData: MoviesInterface) {
-    // console.error('dostalem', movieData);
     this.movieInfo = movieData;
-    // this.movieInfo.
   }
 
   @Input() public set movieNumber(movieNr: number) {
@@ -30,25 +28,10 @@ export class CardComponent implements OnInit {
   constructor(private readonly store: Store<AppState>) { }
 
   ngOnInit() {
-    // this.isDetailsSelected$ = this.store.pipe(
-    //   select(selectMovieNumber),
-    //   map((movie: MovieDetailsState) => movie.movieNumber === (this.myNumber + 1) )
-    // );
   }
 
   public onCardClick(): void {
     this.detailsVisible = true;
-    // this.store.dispatch(new Desl({ movie: this.movieInfo }));
     this.store.dispatch(new SelectMovie({ movie: this.movieInfo }));
   }
-
-  // public getImageUrl(): string {
-  //   if (this.imagesCounter >= this.imagesList.length) {
-  //     this.imagesCounter = 0;
-  //   }
-  //   const retVal = this.imagesList[this.imagesCounter];
-  //   this.imagesCounter++;
-
-  //   return retVal;
-  // }
 }

@@ -3,7 +3,6 @@ import { MoviesInterface } from 'src/app/shared/services/movies/movies.interface
 import { FilterInterface } from 'src/app/shared/services/movies/filter.interface';
 import { FilterBy, FilterOrder } from 'src/app/ui/filter-box/filter-box.component';
 
-
 export const moviesFeatureKey = 'movies';
 
 export interface MoviesState {
@@ -21,7 +20,6 @@ export const initialState: MoviesState = {
 export function moviesReducer(state = initialState, action: MoviesActions): MoviesState {
   switch (action.type) {
     case MoviesActionTypes.LoadMoviesAction:
-      console.error('KOTTTT', action);
       return {
         moviesFilter: action.filterSettings.filters,
         movies: action.moviesList.movies,
