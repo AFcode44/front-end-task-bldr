@@ -9,11 +9,13 @@ export const moviesFeatureKey = 'movies';
 export interface MoviesState {
   moviesFilter: FilterInterface;
   movies: Array<MoviesInterface>;
+  totalMoviesNr: number;
 }
 
 export const initialState: MoviesState = {
-  moviesFilter: {sortBy: FilterBy.TITLE, sortOrder: FilterOrder.DESCENDING},
-  movies: undefined
+  moviesFilter: { sortBy: FilterBy.TITLE, sortOrder: FilterOrder.DESCENDING },
+  movies: undefined,
+  totalMoviesNr: undefined
 };
 
 export function moviesReducer(state = initialState, action: MoviesActions): MoviesState {
@@ -22,13 +24,21 @@ export function moviesReducer(state = initialState, action: MoviesActions): Movi
       console.error('KOTTTT', action);
       return {
         moviesFilter: action.filterSettings.filters,
-        movies: action.moviesList.movies
+        movies: action.moviesList.movies,
+        totalMoviesNr: action.moviesList.movies.length
       };
     case MoviesActionTypes.FilterMovieAction:
-      return  {
+      return {
         moviesFilter: action.filterSettings.filter,
-        movies: state.movies
+        movies: state.movies,
+        totalMoviesNr: state.totalMoviesNr
       };
+    case MoviesActionTypes.TotalMoviesSetAction:
+      return {
+        moviesFilter: state.moviesFilter,
+        movies: state.movies,
+        totalMoviesNr: action.totalMoviesNr.amount
+    };
     default:
       return state;
   }

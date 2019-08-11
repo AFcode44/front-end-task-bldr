@@ -16,12 +16,7 @@ export class CardComponent implements OnInit {
   public movieInfo: MoviesInterface;
   public myNumber: number;
   public detailsVisible = false;
-
   public isDetailsSelected$: Observable<boolean>;
-
-  @Input() public set imageUrl(imagePath: string) {
-    this.myImage = imagePath;
-  }
 
   @Input() public set movieDesc(movieData: MoviesInterface) {
     // console.error('dostalem', movieData);

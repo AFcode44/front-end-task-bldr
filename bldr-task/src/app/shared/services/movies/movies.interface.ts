@@ -2,7 +2,7 @@ export interface MoviesInterface {
   actors: Array<ActorInterface>;
   director: string;
   genres: Array<string>;
-  imbdId: string;
+  imdbId: string;
   metascore: number;
   posterUrl: string;
   title: string;
@@ -10,6 +10,6 @@ export interface MoviesInterface {
 }
 
 export interface ActorInterface {
-  imbdId: string;
+  imdbId: string;
   name: string;
 }

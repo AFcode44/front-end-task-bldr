@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { User } from '../user/user.interface';
 import { MoviesInterface } from './movies.interface';
 import { map } from 'rxjs/operators';
+// import imdb from 'imdb-api';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import { map } from 'rxjs/operators';
 export class MoviesService {
 
   private getMoviesUri = 'https://marblejs-example.herokuapp.com/api/v1/movies';
+  private actorUri = 'http://www.omdbapi.com/?i=';
 
   public constructor(private httpClient: HttpClient) { }
 
@@ -22,8 +24,8 @@ export class MoviesService {
       map((list) => list.collection)
     )
     .subscribe((response: Array<MoviesInterface>) => {
-        console.error('films response', response);
-        console.error('films response', response[2].director);
+        // console.error('films response', response);
+        // console.error('films response', response[2].director);
         movieList$.next(response);
         // this.httpClient.get<any>('http://www.omdbapi.com/?apikey=[yourkey]&', { headers: { 'Authorization': `Bearer ${user.token}` } })
         //   .subscribe((response: any) => {
@@ -41,5 +43,33 @@ export class MoviesService {
     return movieList$;
   }
 
+  public fetchActor(id: string): Observable<any> {
+    const movieList$ = new Subject<any>();
+    // const user: User = JSON.parse(sessionStorage.getItem('userData')).user;
+    // console.error('pytam o:', user.token);
+    //6ba74a8a
+    // imdb.get({id: 'tt0090190'}, {apiKey: '6ba74a8a'}).then(console.error());
+    // this.httpClient.get<any>('http://www.omdbapi.com/?i=tt3896198&apikey=6ba74a8a',{ headers: { 'X-RapidAPI-Key': '6ba74a8a'}})
+    this.httpClient.get<any>(`http://www.omdbapi.com/?i=tt0266697&apikey=6ba74a8a`, { headers: { 'X-RapidAPI-Key': '6ba74a8a' } })
+    .subscribe((response:any) => {
+        // console.error('films response', response);
+        // console.error('films response', response[2].director);
+        console.error('przyszlo', response);
+        movieList$.next(response);
+        // this.httpClient.get<any>('http://www.omdbapi.com/?apikey=[yourkey]&', { headers: { 'Authorization': `Bearer ${user.token}` } })
+        //   .subscribe((response: any) => {
+
+        //   }, (error) => {
+
+        //   });
+        // const user: User = { email: data.email, password: data.password, token: response.body.token };
+        // auth$.next(user);
+      },
+        (error) => {
+          console.error('actors error', error);
+          // auth$.error(error);
+        });
+    return movieList$;
+  }
 
 }

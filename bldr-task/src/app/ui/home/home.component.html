@@ -5,15 +5,29 @@
   <header class="header">
     <button class="log-out" (click)="onLogOut()">LogOut</button>
     <app-filter-box></app-filter-box>
+    <div class="filtering-panel">
+        <div class="filter-wrapper">
+          <div class="number-of-pages">
+            <p class="movies-on-page-header">Movies on page: </p>
+            <input class="user-page-number" type="text" placeholder="0"
+            (keypress)="onMoviesNumber($event)" [(ngModel)]="moviesNumberPerPage">
+            <span class="focus-border"></span>
+          </div>
+          <div class="pagination-wrapper">
+            <div class="pagination">
+              <div class="prev page-numbers" (click)="onPrevClick()">prev</div>
+              <div class="page-numbers" *ngFor="let item of numberOfPages" (click)="onPageClick(item)"
+              [ngClass]="{'current': selectedPage === item}">{{item + 1}}</div>
+              <div class="next page-numbers" (click)="onNextClick()">next</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
   </header>
   <div class="movies-wrapper">
     <div class="movies" *ngFor="let movie of movies$ | async; let i = index">
-      <app-card [imageUrl]="getImageUrl()" [movieDesc]="movie" [movieNumber]="i"></app-card>
+      <app-card [movieDesc]="movie" [movieNumber]="i"></app-card>
     </div>
   </div>
-  <div class="filtering-panel">
-    <input type="checkbox">
-  </div>
-</div>
-<app-card-details></app-card-details>
+  <app-card-details></app-card-details>

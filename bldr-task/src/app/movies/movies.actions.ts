@@ -5,6 +5,7 @@ import { FilterInterface } from '../shared/services/movies/filter.interface';
 export enum MoviesActionTypes {
   LoadMoviesAction = '[LoadMovies] Action',
   FilterMovieAction = '[FilterMovie] Action',
+  TotalMoviesSetAction = '[TotalMoviesSet] Action'
 }
 
 export class LoadMovies implements Action {
@@ -20,4 +21,10 @@ export class MovieFilterApply implements Action {
   public constructor(public filterSettings: {filter: FilterInterface}) {}
 }
 
-export type MoviesActions = LoadMovies | MovieFilterApply;
+export class TotalMoviesSet implements Action {
+  readonly type = MoviesActionTypes.TotalMoviesSetAction;
+
+  public constructor(public totalMoviesNr: {amount: number}) {}
+}
+
+export type MoviesActions = LoadMovies | MovieFilterApply | TotalMoviesSet;

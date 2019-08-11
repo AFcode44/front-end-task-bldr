@@ -1,18 +1,21 @@
-<div class="card-details-container" *ngIf='isVisible'>dadadadadaa
-    <div class="card-details" (keypress)="onKeyPress($event)">
-      <!-- <header class="title-txt">Login window</header>
-
-      <div class="credentials">
-        <label class="input-label-txt" for="email">Email</label>
-        <input class="cred-input" type="text" placeholder="Email" [(ngModel)]="email">
+<div class="movie_card" id="bright" *ngIf='movieInfo !== undefined'>
+  <div class="close-icon" (click)="onCloseClick()"></div>
+  <div class="info_section">
+    <div class="movie_header">
+      <!-- <img class="locandina" src="https://movieplayer.net-cdn.it/t/images/2017/12/20/bright_jpg_191x283_crop_q85.jpg" /> -->
+      <!-- <img class="locandina" src="url(movieInfo.posterUrl)" /> -->
+      <div class="locandina" [ngStyle]="{'background-image': 'url(' + movieInfo.posterUrl + ')'}"></div>
+      <h1 class="title" (click)="onTitleClick()">{{movieInfo.title}}</h1>
+      <h1 class="metascore">{{movieInfo.metascore}}</h1>
+      <h4>{{movieInfo.director}}</h4>
+      <span class="minutes">{{movieInfo.year}}</span>
+      <p class="type">{{movieInfo.genres}}</p>
+    </div>
+    <div class="movie_desc">
+      <div class="text" *ngFor="let actor of actorsList" (click)="onActorClick(actor)">
+          {{actor.name}}
       </div>
-      <div class="credentials">
-        <label class="input-label-txt" for="password">Password</label>
-        <input class="cred-input" type="text" placeholder="Password" [(ngModel)]="password">
-      </div>
-      <div class="error-text">{{errorText}}</div>
-      <div class="button-container">
-          <button class="login-button" title="Log In" (click)="onLogin()">Log In</button>
-        </div> -->
+    </div>
   </div>
+  <div class="blur_back bright_back" [ngStyle]="{'background-image': 'url(' + movieInfo.posterUrl + ')'}"></div>
 </div>

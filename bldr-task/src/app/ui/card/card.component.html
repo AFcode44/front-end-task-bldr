@@ -1,7 +1,7 @@
 <div class="card-container" (click)="onCardClick()">
   <article class="card">
     <div class="card-info-hover"></div>
-    <div class="card-img" [ngStyle]="{'background-image': myImage}"></div>
+    <div class="card-img" [ngStyle]="{'background-image': 'url(' + movieInfo.posterUrl + ')'}"></div>
     <div class="card-img--hover"></div>
     <div class="card-info">
       <span class="card-category">Film number: {{myNumber}}</span>

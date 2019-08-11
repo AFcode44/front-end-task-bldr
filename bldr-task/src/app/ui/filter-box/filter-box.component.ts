@@ -45,9 +45,12 @@ export class SearchBoxComponent implements OnInit {
   this.store.pipe(
     select(getMovieFilters)
   ).subscribe(val => {
-    console.error('DUPA:', val);
-    this.filterBy = val.sortBy;
-    this.filterOrder = val.sortOrder;
+    // console.error('DUPA:', val);
+    if (val && val.sortBy) {
+      this.filterBy = val.sortBy;
+      this.filterOrder = val.sortOrder;
+    }
+
   });
 
     // this.store.pipe(
