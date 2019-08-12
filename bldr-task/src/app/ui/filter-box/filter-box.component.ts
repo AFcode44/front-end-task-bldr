@@ -84,7 +84,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     const uri = `https://marblejs-example.herokuapp.com/api/v1/movies?sortBy=${this.filterBy}&sortDir=${this.filterOrder}`;
 
     this.moviesService.fetchMovies(uri).subscribe((movies: Array<MoviesInterface>) => {
-      this.store.dispatch(new LoadMovies({ movies }, { filters: { sortBy: this.filterBy, sortOrder: this.filterOrder }));
+      this.store.dispatch(new LoadMovies({ movies }, { filters: { sortBy: this.filterBy, sortOrder: this.filterOrder }}));
     });
   }
 }

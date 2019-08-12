@@ -38,5 +38,5 @@ export class AuthEffects {
     }
   });
 
-  constructor(private router: Router, private httpClient: HttpClient, private actions$: Actions) { }
+  constructor(private router: Router, private actions$: Actions) { }
 }

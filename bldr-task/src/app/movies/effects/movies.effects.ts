@@ -3,10 +3,6 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { MoviesActionTypes, MovieFilterApply } from '../movies.actions';
 import { tap } from 'rxjs/operators';
 import { defer, of } from 'rxjs';
-import { LoadMovies } from '../movies.actions';
-import { MoviesService } from 'src/app/shared/services/movies/movies.service';
-import { AppState } from 'src/app/reducers';
-import { Store } from '@ngrx/store';
 
 @Injectable()
 export class MoviesEffects {

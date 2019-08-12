@@ -3,20 +3,22 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
 import { AuthEffects } from './auth.effects';
+import { Router } from '@angular/router';
 
 describe('AuthEffects', () => {
-  let actions$: Observable<any>;
+  const actions$: Observable<any> = new Observable<any>();
   let effects: AuthEffects;
-
+  const routerMock = {};
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
+        { provide: Router, useValue: routerMock },
         AuthEffects,
         provideMockActions(() => actions$)
       ]
     });
 
-    effects = TestBed.get<AuthEffects>(AuthEffects);
+    effects = TestBed.get(AuthEffects);
   });
 
   it('should be created', () => {

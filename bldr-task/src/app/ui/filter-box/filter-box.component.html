@@ -1,22 +1,13 @@
-<!-- <div class="wrap">
-  <div class="search">
-    <input type="text" class="searchTerm" placeholder="Search..." [(ngModel)]="searchValue"
-      (keypress)="onKeyPress($event)">
-    <button type="submit" class="searchButton" (click)="onSearchApply()">
-      <i class="fas fa-search"></i>
-    </button>
-  </div>
-</div> -->
 <div class="filter-box-container">
   <p class="sort-header">Sort By:</p>
   <div class="sort-by">
     <form>
       <div class="radio-group">
-        <input type="radio" id="option-one" name="selector" [checked]="filterBy === 'title'" (click)="onTitle()">
+        <input type="radio" class="inp-title" id="option-one" [checked]="filterBy === 'title'" (click)="onTitle()">
         <label for="option-one">Title</label>
-        <input type="radio" id="option-two" name="selector" [checked]="filterBy === 'year'" (click)="onYear()">
+        <input type="radio" id="option-two" [checked]="filterBy === 'year'" (click)="onYear()">
         <label for="option-two">Year</label>
-        <input type="radio" id="option-three" name="selector" [checked]="filterBy === 'metascore'" (click)="onMetascore()">
+        <input type="radio" id="option-three" [checked]="filterBy === 'metascore'" (click)="onMetascore()">
         <label for="option-three">Metascore</label>
       </div>
     </form>
@@ -24,9 +15,9 @@
   <div class="sorting-order">
     <form>
       <div class="radio-group">
-        <input type="radio" id="option-one-order" name="selector2" [checked]="filterOrder === '1'" (click)="onAscending()">
+        <input type="radio" id="option-one-order" [checked]="filterOrder === '1'" (click)="onAscending()">
         <label for="option-one-order">Ascending</label>
-        <input type="radio" id="option-two-order" name="selector2" [checked]="filterOrder === '-1'" (click)="onDescending()">
+        <input type="radio" id="option-two-order" [checked]="filterOrder === '-1'" (click)="onDescending()">
         <label for="option-two-order">Descending</label>
       </div>
     </form>

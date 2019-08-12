@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
   public password: string;
   public errorText = '';
 
-  constructor(private readonly store: Store<AppState>, private router: Router, private readonly userService: UserService) { }
+  constructor(private readonly store: Store<AppState>, private readonly userService: UserService) { }
 
   ngOnInit() {
   }

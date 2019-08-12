@@ -5,7 +5,6 @@ export enum MovieDetailsActionTypes {
   SelectMovieAction = '[SelectMovie] Action',
   DeselectMovieAction = '[DeselectMovie] Action',
   SelectMovieDetailsAction = '[SelectMovieDetails] Action',
-  // DeselectMovieDetailsAction = '[DeselectMovieDetails] Action',
 }
 
 export class SelectMovie implements Action {
@@ -16,21 +15,6 @@ export class SelectMovie implements Action {
 
 export class DeelectMovie implements Action {
   readonly type = MovieDetailsActionTypes.DeselectMovieAction;
-
-  // constructor(public movieNumber: number) {}
 }
-
-// export class MovieDetailsSelect implements Action {
-//   readonly type = MovieDetailsActionTypes.SelectMovieDetailsAction;
-
-//   constructor(public singleMovie: {movie: MoviesInterface}) {}
-// }
-
-// export class MovieDetailsDeselect implements Action {
-//   readonly type = MovieDetailsActionTypes.DeselectMovieDetailsAction;
-
-//   constructor(public singleMovie: {movie: MoviesInterface}) {}
-// }
-
 
 export type MovieDetailsActions = SelectMovie | DeelectMovie;
