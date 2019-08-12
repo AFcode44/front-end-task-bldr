@@ -7,9 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { CardModule } from '../card/card.module';
 import { CardDetailsModule } from '../card-details/card-details.module';
 import { StoreModule, Action } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
-import { MoviesEffects } from 'src/app/movies/effects/movies.effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 

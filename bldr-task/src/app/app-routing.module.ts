@@ -7,17 +7,13 @@ import { LoginPageComponent } from './ui/login-page/login-page.component';
 const routes: Routes = [
   {
     path: 'movies',
-    // loadChildren: './ui//home/home.module',
     canActivate: [AuthGuard],
     component: HomeComponent
   },
   {
     path: 'login',
-    // loadChildren: './shared/auth/auth.module',
     component: LoginPageComponent
   },
-  // { path: '404', component: PageNotFoundComponent },
-  // { path: 'post/:id', canActivate: [AuthenticationGuard], component: PostDetailsComponent },
   { path: '**', redirectTo: '/movies' }
 ];
 
