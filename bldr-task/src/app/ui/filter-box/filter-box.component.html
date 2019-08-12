@@ -5,9 +5,9 @@
       <div class="radio-group">
         <input type="radio" class="inp-title" id="option-one" [checked]="filterBy === 'title'" (click)="onTitle()">
         <label for="option-one">Title</label>
-        <input type="radio" id="option-two" [checked]="filterBy === 'year'" (click)="onYear()">
+        <input type="radio" class="inp-year" id="option-two" [checked]="filterBy === 'year'" (click)="onYear()">
         <label for="option-two">Year</label>
-        <input type="radio" id="option-three" [checked]="filterBy === 'metascore'" (click)="onMetascore()">
+        <input type="radio" class="inp-meta" id="option-three" [checked]="filterBy === 'metascore'" (click)="onMetascore()">
         <label for="option-three">Metascore</label>
       </div>
     </form>
@@ -15,9 +15,9 @@
   <div class="sorting-order">
     <form>
       <div class="radio-group">
-        <input type="radio" id="option-one-order" [checked]="filterOrder === '1'" (click)="onAscending()">
+        <input type="radio" class="inp-asc" id="option-one-order" [checked]="filterOrder === '1'" (click)="onAscending()">
         <label for="option-one-order">Ascending</label>
-        <input type="radio" id="option-two-order" [checked]="filterOrder === '-1'" (click)="onDescending()">
+        <input type="radio" class="inp-desc" id="option-two-order" [checked]="filterOrder === '-1'" (click)="onDescending()">
         <label for="option-two-order">Descending</label>
       </div>
     </form>

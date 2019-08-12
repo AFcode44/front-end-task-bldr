@@ -15,10 +15,12 @@ describe('LoginPageComponent', () => {
   };
 
   const storeMock = {
-    dispach: function() {}
+    dispach: function () { }
   };
 
+  let loginSpy;
   beforeEach(async(() => {
+    loginSpy = spyOn(userServiceMock, 'login');
     TestBed.configureTestingModule({
       imports: [
         BrowserModule,
@@ -44,5 +46,14 @@ describe('LoginPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should login onLogin', () => {
+    fixture.debugElement.query(By.css('.login-button')).triggerEventHandler('click', {});
+    expect(loginSpy).toHaveBeenCalled();
+  });
+
+  it('should login onKeyPress with enter', () => {
+    fixture.debugElement.query(By.css('.login-container')).triggerEventHandler('keypress', { which: 13 });
+    expect(loginSpy).toHaveBeenCalled();
+  });
 });
 
